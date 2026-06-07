@@ -179,6 +179,20 @@ st.markdown(
         font-weight: 600 !important;
         color: #4A90C4 !important;
     }
+    [data-testid="stExpander"] {
+        background-color: #FFFFFF !important;
+        border-radius: 8px !important;
+    }
+    [data-testid="stExpander"] p,
+    [data-testid="stExpander"] td,
+    [data-testid="stExpander"] th,
+    [data-testid="stExpander"] li {
+        color: #3D2B4F !important;
+    }
+    [data-testid="stExpander"] th {
+        background-color: #EDE0F0 !important;
+        font-weight: 700 !important;
+    }
 
     #MainMenu {visibility: hidden;}
     footer {visibility: hidden;}
