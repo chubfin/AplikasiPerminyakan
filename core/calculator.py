@@ -49,8 +49,6 @@ def _opex_for_year(params: MigasInput, year: int, previous_opex: float | None) -
         return params.initial_opex
 
     if year == params.opex_escalation_start_year:
-        if params.opex_escalation_start_year <= 1:
-            return params.initial_opex
         return params.initial_opex * (1 + params.opex_escalation_rate / 100)
 
     base = previous_opex if previous_opex is not None else params.initial_opex
@@ -91,7 +89,8 @@ def calculate_cashflow(params: MigasInput) -> pd.DataFrame:
         )
         taxable_income = income - opex - depreciation
         tax = max(taxable_income, 0) * params.tax_rate / 100
-        ncf = taxable_income - tax
+        # NCFt = Income - Opex - Tax - Di (ekuivalen dengan Taxable Income - Tax + Di)
+        ncf = income - opex - tax - depreciation
 
         rows.append(
             {
